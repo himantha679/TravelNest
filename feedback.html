@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TravelNest Feedback and Support - Send us your feedback, questions, or suggestions. Browse our FAQ for common answers.">
+    <title>Feedback &amp; Support - TravelNest</title>
+
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e40af">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="nav-logo" aria-label="TravelNest - Go to home page">
+                <span aria-hidden="true">&#9992;</span> TravelNest
+            </a>
+            <button class="hamburger" id="hamburger" type="button"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="nav-links" role="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Explore</a></li>
+                <li><a href="budget.html">Budget Planner</a></li>
+                <li><a href="generator.html">Trip Generator</a></li>
+                <li><a href="mood.html">Travel Mood</a></li>
+                <li><a href="feedback.html" class="active" aria-current="page">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main id="main-content">
+
+        <section class="page-hero" aria-label="Feedback and Support banner">
+            <h1>&#128172; Feedback &amp; Support</h1>
+            <p>Got a question, suggestion, or found an issue? We would love to hear from you.</p>
+        </section>
+
+        <section class="section" aria-labelledby="feedback-heading">
+            <div class="container">
+                <div class="two-col-layout">
+
+                    <!-- Feedback Form -->
+                    <div>
+                        <h2 id="feedback-heading" class="section-title">Send Your Feedback</h2>
+                        <p class="section-subtitle">Fill in all fields below. Your message is stored locally in your browser.</p>
+
+                        <!-- Confirmation message (hidden until form submitted) -->
+                        <div class="form-success-msg" id="form-success" role="alert" aria-live="polite">
+                            <p style="font-size: 2rem; margin-bottom: 0.5rem;" aria-hidden="true">&#10003;</p>
+                            <h3>Thank you for your feedback!</h3>
+                            <p>Your message has been received and saved. We appreciate you taking the time to write to us.</p>
+                            <button type="button" class="btn btn-primary mt-2" id="send-another-btn" style="margin-top: 1rem;">Send Another Message</button>
+                        </div>
+
+                        <!-- The feedback form -->
+                        <div class="feedback-form-card reveal" id="feedback-form-card">
+                            <form id="feedback-form" novalidate aria-label="Feedback submission form">
+
+                                <div class="form-group">
+                                    <label class="form-label" for="fb-name">Full Name</label>
+                                    <input class="form-control" type="text"
+                                           id="fb-name" name="name"
+                                           placeholder="e.g. Peter Griffin"
+                                           autocomplete="name"
+                                           required aria-required="true">
+                                    <p class="form-message error-msg" id="err-name" aria-live="polite"></p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="fb-email">Email Address</label>
+                                    <input class="form-control" type="email"
+                                           id="fb-email" name="email"
+                                           placeholder="e.g. petergriffin@example.com"
+                                           autocomplete="email"
+                                           required aria-required="true">
+                                    <p class="form-message error-msg" id="err-email" aria-live="polite"></p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="fb-message">Your Message</label>
+                                    <textarea class="form-control"
+                                              id="fb-message" name="message"
+                                              rows="5"
+                                              placeholder="Write your feedback, question, or suggestion here..."
+                                              required aria-required="true"></textarea>
+                                    <p class="form-message error-msg" id="err-message" aria-live="polite"></p>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">&#128172; Submit Feedback</button>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div>
+                        <h2 class="section-title">&#10067; Frequently Asked Questions</h2>
+                        <p class="section-subtitle">Quick answers to common questions about TravelNest.</p>
+
+                        <!-- FAQ Accordion (controlled by JavaScript) -->
+                        <div class="accordion reveal" id="faq-accordion" aria-label="Frequently asked questions">
+
+                            <div class="accordion-item">
+                                <button class="accordion-btn" type="button" aria-expanded="false" aria-controls="faq-1-content" id="faq-1-btn">
+                                    Is TravelNest free to use?
+                                    <span class="accordion-icon" aria-hidden="true">+</span>
+                                </button>
+                                <div class="accordion-content" id="faq-1-content" role="region" aria-labelledby="faq-1-btn">
+                                    <p>Yes! TravelNest is completely free to use. All features including the Budget Planner, Trip Generator, and destination tracking are available at no cost. Your data is saved locally in your browser.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-btn" type="button" aria-expanded="false" aria-controls="faq-2-content" id="faq-2-btn">
+                                    Where is my data stored?
+                                    <span class="accordion-icon" aria-hidden="true">+</span>
+                                </button>
+                                <div class="accordion-content" id="faq-2-content" role="region" aria-labelledby="faq-2-btn">
+                                    <p>All your data (saved budgets, wishlist, visited destinations, newsletter subscription) is stored in your browser's localStorage. This means it stays on your device and is not sent to any server. Clearing your browser data will remove it.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-btn" type="button" aria-expanded="false" aria-controls="faq-3-content" id="faq-3-btn">
+                                    How does the Destination of the Day work?
+                                    <span class="accordion-icon" aria-hidden="true">+</span>
+                                </button>
+                                <div class="accordion-content" id="faq-3-content" role="region" aria-labelledby="faq-3-btn">
+                                    <p>The Destination of the Day uses JavaScript to calculate the day number of the current year, then uses that number to select a destination from our list. This means the same destination is shown for the whole day, and a new one appears automatically each morning.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-btn" type="button" aria-expanded="false" aria-controls="faq-4-content" id="faq-4-btn">
+                                    How do the ambient sounds work?
+                                    <span class="accordion-icon" aria-hidden="true">+</span>
+                                </button>
+                                <div class="accordion-content" id="faq-4-content" role="region" aria-labelledby="faq-4-btn">
+                                    <p>The ambient sounds are generated entirely in your browser using the Web Audio API, which is built into all modern browsers. No audio files are downloaded. We use different types of synthesised noise filtered to sound like waves, rain, or city traffic.</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-btn" type="button" aria-expanded="false" aria-controls="faq-5-content" id="faq-5-btn">
+                                    Can I use TravelNest offline?
+                                    <span class="accordion-icon" aria-hidden="true">+</span>
+                                </button>
+                                <div class="accordion-content" id="faq-5-content" role="region" aria-labelledby="faq-5-btn">
+                                    <p>Yes! TravelNest is built as a Progressive Web App (PWA). After your first visit, the pages and scripts are cached by the service worker. You can install it on your home screen and use most features without an internet connection (destination images still require internet).</p>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-btn" type="button" aria-expanded="false" aria-controls="faq-6-content" id="faq-6-btn">
+                                    How accurate are the travel cost estimates?
+                                    <span class="accordion-icon" aria-hidden="true">+</span>
+                                </button>
+                                <div class="accordion-content" id="faq-6-content" role="region" aria-labelledby="faq-6-btn">
+                                    <p>The travel costs shown are approximate estimates based on typical travel budgets. Actual prices vary greatly depending on the time of year, your booking choices, and current exchange rates. Always check up-to-date prices before booking your trip.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo"><span aria-hidden="true">&#9992;</span> TravelNest</a>
+                    <p>Your personal travel planning companion.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul role="list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Explore</a></li>
+                        <li><a href="budget.html">Budget Planner</a></li>
+                        <li><a href="generator.html">Trip Generator</a></li>
+                        <li><a href="mood.html">Travel Mood</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Newsletter</h3>
+                    <p>Get travel tips and destination ideas.</p>
+                    <form id="newsletter-form" novalidate aria-label="Newsletter subscription form">
+                        <div class="newsletter-group">
+                            <label for="newsletter-email" class="visually-hidden">Email address for newsletter</label>
+                            <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Enter your email" autocomplete="email" required>
+                            <button type="submit" class="btn btn-accent">Subscribe</button>
+                        </div>
+                        <p id="newsletter-msg" class="form-message" aria-live="polite" aria-atomic="true"></p>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelNest. Built for COMP40053 Assignment 3.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/feedback.js"></script>
+
+</body>
+</html>

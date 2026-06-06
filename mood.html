@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TravelNest Travel Mood - Play ambient travel sounds, and mark destinations as visited or planned to track your travel journey.">
+    <title>Travel Mood - TravelNest</title>
+
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e40af">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="nav-logo" aria-label="TravelNest - Go to home page">
+                <span aria-hidden="true">&#9992;</span> TravelNest
+            </a>
+            <button class="hamburger" id="hamburger" type="button"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="nav-links" role="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Explore</a></li>
+                <li><a href="budget.html">Budget Planner</a></li>
+                <li><a href="generator.html">Trip Generator</a></li>
+                <li><a href="mood.html" class="active" aria-current="page">Travel Mood</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main id="main-content">
+
+        <section class="page-hero" aria-label="Travel Mood banner">
+            <h1>&#127925; Travel Mood</h1>
+            <p>Play ambient sounds to get in the travel mood, and track which destinations you have visited or planned.</p>
+        </section>
+
+        <!-- AMBIENT SOUNDS SECTION -->
+        <section class="section" style="background-color: var(--white);" aria-labelledby="sounds-heading">
+            <div class="container">
+                <h2 id="sounds-heading" class="section-title">&#127925; Ambient Travel Sounds</h2>
+                <p class="section-subtitle">Click a button to play or stop an ambient sound. Only one plays at a time.</p>
+
+                <!-- Sound Note for User -->
+                <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem; background-color: #eff6ff; padding: 0.6rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--primary);">
+                    &#8505; Sounds are generated in your browser using the Web Audio API. No audio files needed.
+                </p>
+
+                <!-- Sound Toggle Buttons -->
+                <div class="sound-controls" role="group" aria-label="Ambient sound controls">
+
+                    <button type="button" class="sound-btn" id="sound-beach" data-sound="beach" aria-pressed="false">
+                        <span class="sound-icon" aria-hidden="true">&#127944;</span>
+                        <span>Beach Waves</span>
+                    </button>
+
+                    <button type="button" class="sound-btn" id="sound-forest" data-sound="forest" aria-pressed="false">
+                        <span class="sound-icon" aria-hidden="true">&#127795;</span>
+                        <span>Forest Rain</span>
+                    </button>
+
+                    <button type="button" class="sound-btn" id="sound-city" data-sound="city" aria-pressed="false">
+                        <span class="sound-icon" aria-hidden="true">&#127963;</span>
+                        <span>City Hum</span>
+                    </button>
+
+                    <button type="button" class="sound-btn" id="sound-off" aria-pressed="false">
+                        <span class="sound-icon" aria-hidden="true">&#128263;</span>
+                        <span>Stop Sound</span>
+                    </button>
+
+                </div>
+
+                <p id="sound-status" style="font-size: 0.88rem; color: var(--text-light); margin-top: 0.5rem;" aria-live="polite" aria-atomic="true">No sound playing.</p>
+            </div>
+        </section>
+
+        <!-- DESTINATION TRACKING SECTION -->
+        <section class="section" aria-labelledby="tracking-heading">
+            <div class="container">
+                <h2 id="tracking-heading" class="section-title">&#128205; Track Your Destinations</h2>
+                <p class="section-subtitle">Mark destinations as visited or planned. Your progress is saved automatically.</p>
+
+                <!-- Summary of visited/planned counts -->
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;" aria-live="polite" aria-atomic="true">
+                    <div style="background-color: #d1fae5; color: #065f46; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem;">
+                        &#10003; Visited: <span id="visited-count">0</span>
+                    </div>
+                    <div style="background-color: #fef3c7; color: #92400e; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem;">
+                        &#128197; Planned: <span id="planned-count">0</span>
+                    </div>
+                </div>
+
+                <!-- Destination tracking list (populated by JS) -->
+                <div class="mood-dest-grid" id="mood-dest-grid" aria-label="Destination tracking list"></div>
+            </div>
+        </section>
+
+        <!-- VISITED & PLANNED LISTS -->
+        <section class="section" style="background-color: var(--white);" aria-labelledby="lists-heading">
+            <div class="container">
+                <h2 id="lists-heading" class="section-title">&#127775; Your Travel Summary</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--dark); margin-bottom: 0.75rem;">
+                            &#10003; Places I Have Visited
+                        </h3>
+                        <div class="tracking-list" id="visited-list">
+                            <p style="color: var(--text-light); font-size: 0.9rem;">No visited destinations yet.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--dark); margin-bottom: 0.75rem;">
+                            &#128197; Places I Want to Visit
+                        </h3>
+                        <div class="tracking-list" id="planned-list">
+                            <p style="color: var(--text-light); font-size: 0.9rem;">No planned destinations yet.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button type="button" class="btn btn-outline btn-sm mt-3" id="clear-tracking-btn">Reset Tracking</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo"><span aria-hidden="true">&#9992;</span> TravelNest</a>
+                    <p>Your personal travel planning companion.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul role="list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Explore</a></li>
+                        <li><a href="budget.html">Budget Planner</a></li>
+                        <li><a href="generator.html">Trip Generator</a></li>
+                        <li><a href="mood.html">Travel Mood</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Newsletter</h3>
+                    <p>Get travel tips and destination ideas.</p>
+                    <form id="newsletter-form" novalidate aria-label="Newsletter subscription form">
+                        <div class="newsletter-group">
+                            <label for="newsletter-email" class="visually-hidden">Email address for newsletter</label>
+                            <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Enter your email" autocomplete="email" required>
+                            <button type="submit" class="btn btn-accent">Subscribe</button>
+                        </div>
+                        <p id="newsletter-msg" class="form-message" aria-live="polite" aria-atomic="true"></p>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelNest. Built for COMP40053 Assignment 3.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/mood.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TravelNest Destination Explorer - Browse and filter destinations by continent or name. Click any destination to see details, attractions, and travel costs.">
+    <title>Destination Explorer - TravelNest</title>
+
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e40af">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="nav-logo" aria-label="TravelNest - Go to home page">
+                <span aria-hidden="true">&#9992;</span> TravelNest
+            </a>
+            <button class="hamburger" id="hamburger" type="button"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="nav-links" role="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html" class="active" aria-current="page">Explore</a></li>
+                <li><a href="budget.html">Budget Planner</a></li>
+                <li><a href="generator.html">Trip Generator</a></li>
+                <li><a href="mood.html">Travel Mood</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main id="main-content">
+
+        <!-- Page Banner -->
+        <section class="page-hero" aria-label="Destination Explorer banner">
+            <h1>&#127758; Destination Explorer</h1>
+            <p>Discover amazing places around the world. Filter by continent or search by name.</p>
+        </section>
+
+        <!-- Filter Bar + Cards -->
+        <section class="section" aria-labelledby="destinations-heading">
+            <div class="container">
+                <h2 id="destinations-heading" class="section-title">Browse Destinations</h2>
+                <p class="section-subtitle" id="results-count">Showing all destinations</p>
+
+                <!-- Filter and Search Controls -->
+                <div class="filter-bar" role="search" aria-label="Filter destinations">
+                    <label for="search-input" class="visually-hidden">Search destinations by name</label>
+                    <input type="text"
+                           id="search-input"
+                           placeholder="&#128269; Search by destination name..."
+                           aria-label="Search by destination name"
+                           autocomplete="off">
+
+                    <label for="continent-filter" class="visually-hidden">Filter by continent</label>
+                    <select id="continent-filter" aria-label="Filter by continent">
+                        <option value="all">All Continents</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="North America">North America</option>
+                        <option value="Oceania">Oceania</option>
+                        <option value="South America">South America</option>
+                    </select>
+                </div>
+
+                <!-- Loading spinner (visible briefly while cards render) -->
+                <div class="spinner-box" id="spinner" aria-label="Loading destinations">
+                    <div class="spinner" role="status">
+                        <span class="visually-hidden">Loading destinations...</span>
+                    </div>
+                </div>
+
+                <!-- Destination Cards Grid (populated by JavaScript) -->
+                <div class="cards-grid" id="cards-grid" aria-live="polite" aria-label="Destination cards"></div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================== MODAL ===================== -->
+    <!-- Opens when a destination card is clicked -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-box">
+
+            <div class="modal-header">
+                <img id="modal-img" src="" alt="" width="680" height="220">
+                <div class="modal-header-overlay">
+                    <h2 id="modal-title">Destination Name</h2>
+                    <p id="modal-subtitle">Country &middot; Continent</p>
+                </div>
+                <button class="modal-close" id="modal-close" type="button" aria-label="Close destination details">&#10005;</button>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Description -->
+                <h3 class="modal-section-title">About This Destination</h3>
+                <p id="modal-description"></p>
+
+                <!-- Popular Attractions List -->
+                <h3 class="modal-section-title">Popular Attractions</h3>
+                <ul class="modal-attractions" id="modal-attractions" aria-label="List of popular attractions"></ul>
+
+                <!-- Travel Cost Comparison Table -->
+                <h3 class="modal-section-title">Travel Cost Comparison</h3>
+                <div style="overflow-x: auto;">
+                    <table class="cost-table" aria-label="Travel cost comparison table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Category</th>
+                                <th scope="col">Budget</th>
+                                <th scope="col">Moderate</th>
+                                <th scope="col">Luxury</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-costs"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo"><span aria-hidden="true">&#9992;</span> TravelNest</a>
+                    <p>Your personal travel planning companion.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul role="list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Explore</a></li>
+                        <li><a href="budget.html">Budget Planner</a></li>
+                        <li><a href="generator.html">Trip Generator</a></li>
+                        <li><a href="mood.html">Travel Mood</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Newsletter</h3>
+                    <p>Get travel tips and destination ideas.</p>
+                    <form id="newsletter-form" novalidate aria-label="Newsletter subscription form">
+                        <div class="newsletter-group">
+                            <label for="newsletter-email" class="visually-hidden">Email address for newsletter</label>
+                            <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Enter your email" autocomplete="email" required>
+                            <button type="submit" class="btn btn-accent">Subscribe</button>
+                        </div>
+                        <p id="newsletter-msg" class="form-message" aria-live="polite" aria-atomic="true"></p>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelNest. Built for COMP40053 Assignment 3.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/destinations.js"></script>
+
+</body>
+</html>

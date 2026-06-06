@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TravelNest - Your personal travel planning hub. Explore destinations, plan trips, and manage your travel inspiration all in one place.">
+    <title>TravelNest - Your Travel Planning Hub</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TravelNest">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Skip navigation for screen readers and keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="nav-logo" aria-label="TravelNest - Go to home page">
+                <span aria-hidden="true">&#9992;</span> TravelNest
+            </a>
+            <button class="hamburger" id="hamburger" type="button"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="nav-links" role="list">
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                <li><a href="destinations.html">Explore</a></li>
+                <li><a href="budget.html">Budget Planner</a></li>
+                <li><a href="generator.html">Trip Generator</a></li>
+                <li><a href="mood.html">Travel Mood</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main id="main-content">
+
+        <!-- HERO SECTION: CSS Grid layout, text left / image right -->
+        <section class="hero" aria-label="Welcome to TravelNest">
+            <div class="hero-grid">
+
+                <!-- Left column: rotating quote text and CTA -->
+                <div class="hero-text">
+                    <span class="hero-badge">&#127758; Explore the World</span>
+                    <h1 class="hero-title">
+                        Plan Your Next<br>
+                        <span>Dream Trip</span>
+                    </h1>
+                    <!-- Auto-rotating quote box (filled by JavaScript) -->
+                    <div class="hero-quote-box" aria-live="polite" aria-atomic="true">
+                        <p id="hero-quote-text">Loading travel inspiration...</p>
+                        <p id="hero-quote-author"></p>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="destinations.html" class="btn btn-accent">Explore Destinations</a>
+                        <a href="generator.html" class="btn btn-outline">Generate a Trip</a>
+                    </div>
+                </div>
+
+                <!-- Right column: destination image (changes with quotes) -->
+                <div class="hero-image-box" aria-hidden="true">
+                    <img id="hero-image"
+                         src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=600&h=400&fit=crop&auto=format"
+                         alt="Travel destination"
+                         width="600"
+                         height="400">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DESTINATION OF THE DAY -->
+        <section class="dotd-section" aria-labelledby="dotd-heading">
+            <div class="container">
+                <h2 id="dotd-heading" class="section-title">&#127919; Destination of the Day</h2>
+                <p class="section-subtitle">A new destination to inspire you, every single day.</p>
+
+                <!-- Filled by JavaScript using date-based logic -->
+                <div class="dotd-card reveal" id="dotd-card">
+                    <div class="dotd-info">
+                        <span class="dotd-label">&#9733; Today's Pick</span>
+                        <h3 class="dotd-name" id="dotd-name">Loading...</h3>
+                        <p class="dotd-country" id="dotd-country"></p>
+                        <p class="dotd-desc" id="dotd-desc"></p>
+                        <a id="dotd-link" href="destinations.html" class="btn btn-primary">Explore More Destinations</a>
+                    </div>
+                    <div>
+                        <img id="dotd-img"
+                             src=""
+                             alt="Destination of the day"
+                             class="dotd-img"
+                             width="600"
+                             height="400"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY TRAVELNEST FEATURES SECTION -->
+        <section class="section" aria-labelledby="features-heading" style="background-color: var(--white);">
+            <div class="container">
+                <h2 id="features-heading" class="section-title text-center">Why Use TravelNest?</h2>
+                <p class="section-subtitle text-center">Everything you need for your travel adventure, in one place.</p>
+
+                <div class="features-grid">
+
+                    <article class="feature-card reveal">
+                        <span class="feature-icon" aria-hidden="true">&#127759;</span>
+                        <h3>Explore Destinations</h3>
+                        <p>Browse hundreds of hand-picked destinations with detailed information, costs, and top attractions.</p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <span class="feature-icon" aria-hidden="true">&#128176;</span>
+                        <h3>Plan Your Budget</h3>
+                        <p>Input your destination, travel days, and daily budget to instantly calculate your estimated trip cost.</p>
+                    </article>
+
+                    <article class="feature-card reveal">
+                        <span class="feature-icon" aria-hidden="true">&#127922;</span>
+                        <h3>Random Trip Generator</h3>
+                        <p>Not sure where to go? Let TravelNest surprise you with a random destination based on your travel style.</p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK LINKS SECTION -->
+        <section class="section" aria-labelledby="quicklinks-heading">
+            <div class="container text-center">
+                <h2 id="quicklinks-heading" class="section-title">Start Planning Today</h2>
+                <p class="section-subtitle">Choose where you want to begin your journey.</p>
+                <div class="flex flex-wrap gap-1" style="justify-content: center; gap: 0.75rem; margin-top: 1.5rem;">
+                    <a href="destinations.html" class="btn btn-primary reveal">&#127758; Destination Explorer</a>
+                    <a href="budget.html" class="btn btn-outline reveal">&#128176; Budget Planner</a>
+                    <a href="generator.html" class="btn btn-accent reveal">&#127922; Trip Generator</a>
+                    <a href="mood.html" class="btn btn-outline reveal">&#127925; Travel Mood</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span aria-hidden="true">&#9992;</span> TravelNest
+                    </a>
+                    <p>Your personal travel planning companion. Explore, plan, and dream without limits.</p>
+                </div>
+
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul role="list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Explore</a></li>
+                        <li><a href="budget.html">Budget Planner</a></li>
+                        <li><a href="generator.html">Trip Generator</a></li>
+                        <li><a href="mood.html">Travel Mood</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Newsletter</h3>
+                    <p>Get travel tips and destination ideas straight to your inbox.</p>
+                    <form id="newsletter-form" novalidate aria-label="Newsletter subscription form">
+                        <div class="newsletter-group">
+                            <label for="newsletter-email" class="visually-hidden">Email address for newsletter</label>
+                            <input type="email" id="newsletter-email" name="newsletter-email"
+                                   placeholder="Enter your email"
+                                   autocomplete="email"
+                                   required>
+                            <button type="submit" class="btn btn-accent">Subscribe</button>
+                        </div>
+                        <p id="newsletter-msg" class="form-message" aria-live="polite" aria-atomic="true"></p>
+                    </form>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelNest. Built for COMP40053 Assignment 3.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts: data first, then shared utils, then page-specific -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/home.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TravelNest Random Trip Generator - Let us suggest a destination based on your travel type and budget. Save your favourites to a personal wishlist.">
+    <title>Trip Generator - TravelNest</title>
+
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e40af">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="nav-logo" aria-label="TravelNest - Go to home page">
+                <span aria-hidden="true">&#9992;</span> TravelNest
+            </a>
+            <button class="hamburger" id="hamburger" type="button"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="nav-links" role="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Explore</a></li>
+                <li><a href="budget.html">Budget Planner</a></li>
+                <li><a href="generator.html" class="active" aria-current="page">Trip Generator</a></li>
+                <li><a href="mood.html">Travel Mood</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main id="main-content">
+
+        <section class="page-hero" aria-label="Trip Generator banner">
+            <h1>&#127922; Random Trip Generator</h1>
+            <p>Not sure where to go? Tell us your travel style and budget, and we will suggest the perfect destination.</p>
+        </section>
+
+        <section class="section" aria-labelledby="generator-heading">
+            <div class="container">
+                <div class="two-col-layout">
+
+                    <!-- Generator Controls -->
+                    <div>
+                        <h2 id="generator-heading" class="section-title">Pick Your Preferences</h2>
+                        <p class="section-subtitle">Select your travel type and budget, then hit Generate!</p>
+
+                        <div class="generator-form reveal">
+
+                            <div class="form-group">
+                                <label class="form-label" for="travel-type">Travel Type</label>
+                                <select class="form-control" id="travel-type" name="travel-type" aria-label="Select travel type">
+                                    <option value="any">Any Type</option>
+                                    <option value="adventure">&#127952; Adventure</option>
+                                    <option value="relaxation">&#127958; Relaxation</option>
+                                    <option value="cultural">&#127963; Cultural</option>
+                                    <option value="nature">&#127807; Nature</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="budget-range">Budget Range</label>
+                                <select class="form-control" id="budget-range" name="budget-range" aria-label="Select budget range">
+                                    <option value="any">Any Budget</option>
+                                    <option value="low">&#128994; Low Budget</option>
+                                    <option value="medium">&#128992; Medium Budget</option>
+                                    <option value="high">&#128308; High / Luxury</option>
+                                </select>
+                            </div>
+
+                            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                                <button type="button" class="btn btn-primary" id="generate-btn">
+                                    &#127922; Generate Destination
+                                </button>
+                                <button type="button" class="btn btn-accent btn-surprise" id="surprise-btn">
+                                    &#10024; Surprise Me Again!
+                                </button>
+                            </div>
+
+                            <!-- Error message if no match found -->
+                            <p id="gen-error" class="form-message error-msg mt-1" aria-live="polite"></p>
+
+                        </div>
+                    </div>
+
+                    <!-- Generated Destination Result -->
+                    <div>
+                        <div class="generated-card" id="generated-card" aria-live="polite" aria-atomic="true">
+                            <img id="gen-img" src="" alt="" width="600" height="220" loading="lazy">
+                            <div class="generated-card-body">
+                                <span class="dest-continent-badge" id="gen-continent"></span>
+                                <h3 id="gen-name" style="margin-top: 0.5rem;"></h3>
+                                <p style="color: var(--text-light); font-size: 0.9rem;" id="gen-country"></p>
+                                <p class="gen-quote" id="gen-quote"></p>
+                                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                                    <button type="button" class="btn btn-accent btn-sm" id="add-wishlist-btn">
+                                        &#10084; Add to Wishlist
+                                    </button>
+                                    <a href="destinations.html" class="btn btn-outline btn-sm">View All Destinations</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Placeholder shown before generating -->
+                        <div id="gen-placeholder" style="text-align: center; padding: 3rem; color: var(--text-light);">
+                            <p style="font-size: 3rem; margin-bottom: 0.75rem;" aria-hidden="true">&#127922;</p>
+                            <p>Your suggested destination will appear here.</p>
+                            <p style="font-size: 0.88rem; margin-top: 0.4rem;">Select your preferences and click Generate!</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Wishlist Section -->
+                <div style="margin-top: 3rem; max-width: 1100px; margin-left: auto; margin-right: auto;">
+                    <h2 class="section-title reveal">&#10084; My Wishlist</h2>
+                    <p class="section-subtitle">Destinations you have saved to your personal wishlist.</p>
+                    <p id="no-wishlist-msg" style="color: var(--text-light); font-size: 0.95rem;">Your wishlist is empty. Generate a destination and save it!</p>
+                    <div class="wishlist-items" id="wishlist-list"></div>
+                    <button type="button" class="btn btn-outline btn-sm mt-2" id="clear-wishlist-btn" style="display: none;">Clear Wishlist</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo"><span aria-hidden="true">&#9992;</span> TravelNest</a>
+                    <p>Your personal travel planning companion.</p>
+                </div>
+                <nav class="footer-nav" aria-label="Footer navigation">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul role="list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Explore</a></li>
+                        <li><a href="budget.html">Budget Planner</a></li>
+                        <li><a href="generator.html">Trip Generator</a></li>
+                        <li><a href="mood.html">Travel Mood</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </nav>
+                <div class="footer-newsletter">
+                    <h3 class="footer-heading">Newsletter</h3>
+                    <p>Get travel tips and destination ideas.</p>
+                    <form id="newsletter-form" novalidate aria-label="Newsletter subscription form">
+                        <div class="newsletter-group">
+                            <label for="newsletter-email" class="visually-hidden">Email address for newsletter</label>
+                            <input type="email" id="newsletter-email" name="newsletter-email" placeholder="Enter your email" autocomplete="email" required>
+                            <button type="submit" class="btn btn-accent">Subscribe</button>
+                        </div>
+                        <p id="newsletter-msg" class="form-message" aria-live="polite" aria-atomic="true"></p>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelNest. Built for COMP40053 Assignment 3.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/generator.js"></script>
+
+</body>
+</html>
