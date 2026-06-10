@@ -103,6 +103,31 @@
 
                     <!-- Results Section (hidden until form is submitted) -->
                     <div>
+                        <!-- Placeholder shown before form is submitted -->
+                        <div class="budget-placeholder" id="budget-placeholder">
+                            <span class="budget-placeholder-icon">&#128176;</span>
+                            <h3>Your Budget Summary</h3>
+                            <p>Fill in your trip details on the left and hit <strong>Calculate Budget</strong> to see your estimated cost.</p>
+                            <div class="budget-placeholder-steps">
+                                <div class="budget-placeholder-step">
+                                    <span>1</span>
+                                    <span>Select your destination</span>
+                                </div>
+                                <div class="budget-placeholder-step">
+                                    <span>2</span>
+                                    <span>Enter number of days</span>
+                                </div>
+                                <div class="budget-placeholder-step">
+                                    <span>3</span>
+                                    <span>Set your daily budget</span>
+                                </div>
+                                <div class="budget-placeholder-step">
+                                    <span>4</span>
+                                    <span>Hit Calculate to see results!</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="budget-results" id="budget-results" aria-live="polite" aria-atomic="true">
                             <h3 style="font-family: var(--font-heading); font-size: 1rem; color: var(--text-light); margin-bottom: 0.25rem; font-weight: 500;">Estimated Total Trip Cost</h3>
                             <p class="result-total" id="result-total">£0</p>
@@ -178,6 +203,24 @@
     <script src="js/data.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/budget.js"></script>
+    <script>
+        /* Hide placeholder when results are shown, restore on clear */
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('budget-form');
+            var clearBtn = document.getElementById('clear-btn');
+            var placeholder = document.getElementById('budget-placeholder');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    if (placeholder) placeholder.style.display = 'none';
+                });
+            }
+            if (clearBtn) {
+                clearBtn.addEventListener('click', function() {
+                    if (placeholder) placeholder.style.display = 'block';
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
