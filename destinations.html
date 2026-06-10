@@ -33,7 +33,7 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
-            <ul class="nav-links" id="nav-links" role="list">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="destinations.html" class="active" aria-current="page">Explore</a></li>
                 <li><a href="budget.html">Budget Planner</a></li>
@@ -81,14 +81,14 @@
                 </div>
 
                 <!-- Loading spinner (visible briefly while cards render) -->
-                <div class="spinner-box" id="spinner" aria-label="Loading destinations">
+                <div class="spinner-box" id="spinner" role="status">
                     <div class="spinner" role="status">
                         <span class="visually-hidden">Loading destinations...</span>
                     </div>
                 </div>
 
                 <!-- Destination Cards Grid (populated by JavaScript) -->
-                <div class="cards-grid" id="cards-grid" aria-live="polite" aria-label="Destination cards"></div>
+                <div class="cards-grid" id="cards-grid" role="region" aria-live="polite" aria-label="Destination cards"></div>
 
             </div>
         </section>
@@ -101,7 +101,7 @@
         <div class="modal-box">
 
             <div class="modal-header">
-                <img id="modal-img" src="" alt="" width="680" height="220">
+                <img id="modal-img" src="images/icon.svg" alt="" width="680" height="220">
                 <div class="modal-header-overlay">
                     <h2 id="modal-title">Destination Name</h2>
                     <p id="modal-subtitle">Country &middot; Continent</p>
@@ -149,7 +149,7 @@
                 </div>
                 <nav class="footer-nav" aria-label="Footer navigation">
                     <h3 class="footer-heading">Quick Links</h3>
-                    <ul role="list">
+                    <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="destinations.html">Explore</a></li>
                         <li><a href="budget.html">Budget Planner</a></li>
@@ -183,3 +183,5 @@
 
 </body>
 </html>
+
+
