@@ -10,7 +10,7 @@ const destinations = [
         name: "Paris",
         country: "France",
         continent: "Europe",
-        image: "https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=600&h=400&fit=crop&auto=format",
+        image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&h=400&fit=crop&auto=format",
         description: "Paris, the City of Light, is one of the most romantic and culturally rich cities in the world. Famous for its iconic architecture, world-class art museums, and incredible cuisine, Paris offers something special for every type of traveller. From the towering Eiffel Tower to the charming streets of Montmartre, every corner tells a story.",
         attractions: ["Eiffel Tower", "The Louvre Museum", "Notre-Dame Cathedral", "Champs-Élysées", "Palace of Versailles"],
         costs: [
@@ -100,7 +100,7 @@ const destinations = [
         name: "Rio de Janeiro",
         country: "Brazil",
         continent: "South America",
-        image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c71e?w=600&h=400&fit=crop&auto=format",
+        image: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=600&h=400&fit=crop&auto=format",
         description: "Rio de Janeiro is a vibrant city full of colour, music, and energy. Home to the famous Christ the Redeemer statue and the beautiful Copacabana beach, Rio captures the soul with its natural beauty and lively culture. The city is famous for its Carnival festival, samba rhythms, and warm hospitality.",
         attractions: ["Christ the Redeemer", "Copacabana Beach", "Sugarloaf Mountain", "Tijuca National Park", "Lapa Arches"],
         costs: [
